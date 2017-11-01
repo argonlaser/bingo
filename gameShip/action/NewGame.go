@@ -3,9 +3,9 @@ package action
 import (
 	"golang.org/x/net/context"
 
-	uuid "github.com/satori/go.uuid"
 	"github.com/argonlaser/bingo/gameShip/game"
 	"github.com/argonlaser/bingo/gameShip/gameShipRpc"
+	uuid "github.com/satori/go.uuid"
 	"go.uber.org/zap"
 )
 
