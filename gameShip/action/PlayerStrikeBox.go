@@ -3,15 +3,15 @@ package action
 import (
 	"golang.org/x/net/context"
 
-	"github.com/scriptnull/bingo/gameShip/gameShipRpc"
-	"github.com/uber-go/zap"
+	"github.com/argonlaser/bingo/gameShip/gameShipRpc"
+	"go.uber.org/zap"
 )
 
 // PlayerStrikeBox creates a Game object and saves in a global store
 func (s *GameShipRPCServer) PlayerStrikeBox(ctx context.Context, in *gameShipRpc.PlayerStrikeBoxRequest) (*gameShipRpc.PlayerStrikeBoxResponse, error) {
 	var funcName = zap.String("FuncName", "actions|PlayerStrikeBox|")
 	s.Logger.Info("funcEvent", funcName, zap.String("Event", "Start"))
-	s.Logger.Debug("funcVariable", funcName, zap.Object("PlayerStrikeBoxRequest", in))
+	s.Logger.Info("funcVariable", funcName, zap.Any("PlayerStrikeBoxRequest", in))
 
 	reqGame, err := s.GameStore.GetByGameID(in.GameId)
 	if err != nil {
@@ -36,7 +36,7 @@ func (s *GameShipRPCServer) PlayerStrikeBox(ctx context.Context, in *gameShipRpc
 		PlayerId: reqPlayer.ID,
 	}
 
-	s.Logger.Debug("funcVariable", funcName, zap.Object("PlayerStrikeBoxResponse", result))
+	s.Logger.Debug("funcVariable", funcName, zap.Any("PlayerStrikeBoxResponse", result))
 	s.Logger.Info("funcEvent", funcName, zap.String("Event", "End"))
 	return result, nil
 }

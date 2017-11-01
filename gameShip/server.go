@@ -3,10 +3,10 @@ package main
 import (
 	"net"
 
-	"github.com/scriptnull/bingo/gameShip/action"
-	"github.com/scriptnull/bingo/gameShip/gameShipRpc"
-	"github.com/scriptnull/bingo/gameShip/store"
-	"github.com/uber-go/zap"
+	"github.com/argonlaser/bingo/gameShip/action"
+	"github.com/argonlaser/bingo/gameShip/gameShipRpc"
+	"github.com/argonlaser/bingo/gameShip/store"
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

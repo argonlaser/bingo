@@ -3,7 +3,7 @@ package store
 import (
 	"errors"
 
-	"github.com/scriptnull/bingo/gameShip/game"
+	"github.com/argonlaser/bingo/gameShip/game"
 )
 
 // LocalGameStore stores the game data in local hard drive

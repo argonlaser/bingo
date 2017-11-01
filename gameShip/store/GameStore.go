@@ -1,6 +1,6 @@
 package store
 
-import "github.com/scriptnull/bingo/gameShip/game"
+import "github.com/argonlaser/bingo/gameShip/game"
 
 // GameStore will contain the reference to the games
 // or methods to reach those game references

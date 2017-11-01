@@ -3,15 +3,15 @@ package action
 import (
 	"golang.org/x/net/context"
 
-	"github.com/scriptnull/bingo/gameShip/gameShipRpc"
-	"github.com/uber-go/zap"
+	"github.com/argonlaser/bingo/gameShip/gameShipRpc"
+	"go.uber.org/zap"
 )
 
 // GameStart starts the game
 func (s *GameShipRPCServer) GameStart(ctx context.Context, in *gameShipRpc.GameStartRequest) (*gameShipRpc.GameStartResponse, error) {
 	var funcName = zap.String("FuncName", "actions|GameStart|")
 	s.Logger.Info("funcEvent", funcName, zap.String("Event", "Start"))
-	s.Logger.Debug("funcVariable", funcName, zap.Object("GameStartRequest", in))
+	s.Logger.Debug("funcVariable", funcName, zap.Any("GameStartRequest", in))
 
 	// game presence check
 	reqGame, err := s.GameStore.GetByGameID(in.GameId)
@@ -27,7 +27,7 @@ func (s *GameShipRPCServer) GameStart(ctx context.Context, in *gameShipRpc.GameS
 		PlayerId: reqGame.CurrentPlayer.ID,
 	}
 
-	s.Logger.Debug("funcVariable", funcName, zap.Object("GameStartResponse", result))
+	s.Logger.Debug("funcVariable", funcName, zap.Any("GameStartResponse", result))
 	s.Logger.Info("funcEvent", funcName, zap.String("Event", "End"))
 	return result, nil
 }

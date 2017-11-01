@@ -1,8 +1,8 @@
 package action
 
 import (
-	"github.com/scriptnull/bingo/gameShip/store"
-	"github.com/uber-go/zap"
+	"github.com/argonlaser/bingo/gameShip/store"
+	"go.uber.org/zap"
 )
 
 // GameShipRPCServer implments the gameShipRpc interface

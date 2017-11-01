@@ -1,4 +1,4 @@
-package: github.com/scriptnull/bingo/gameShip
+package: github.com/argonlaser/bingo/gameShip
 import:
 - package: google.golang.org/grpc
   version: ~1.0.5
@@ -8,4 +8,4 @@ import:
   - protoc-gen-go
 - package: github.com/satori/go.uuid
   version: ~1.1.0
-- package: github.com/uber-go/zap
+- package: go.uber.org/zap

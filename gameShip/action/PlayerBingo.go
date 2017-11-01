@@ -3,15 +3,15 @@ package action
 import (
 	"golang.org/x/net/context"
 
-	"github.com/scriptnull/bingo/gameShip/gameShipRpc"
-	"github.com/uber-go/zap"
+	"github.com/argonlaser/bingo/gameShip/gameShipRpc"
+	"go.uber.org/zap"
 )
 
 // PlayerBingo creates a Game object and saves in a global store
 func (s *GameShipRPCServer) PlayerBingo(ctx context.Context, in *gameShipRpc.PlayerBingoRequest) (*gameShipRpc.PlayerBingoResponse, error) {
 	var funcName = zap.String("FuncName", "actions|PlayerBingo|")
 	s.Logger.Info("funcEvent", funcName, zap.String("Event", "Start"))
-	s.Logger.Debug("funcVariable", funcName, zap.Object("PlayerBingoRequest", in))
+	s.Logger.Debug("funcVariable", funcName, zap.Any("PlayerBingoRequest", in))
 
 	reqGame, err := s.GameStore.GetByGameID(in.GameId)
 	if err != nil {
@@ -37,7 +37,7 @@ func (s *GameShipRPCServer) PlayerBingo(ctx context.Context, in *gameShipRpc.Pla
 		Position: bingoResult.Position,
 	}
 
-	s.Logger.Debug("funcVariable", funcName, zap.Object("PlayerBingoResponse", result))
+	s.Logger.Debug("funcVariable", funcName, zap.Any("PlayerBingoResponse", result))
 	s.Logger.Info("funcEvent", funcName, zap.String("Event", "End"))
 	return result, nil
 }
