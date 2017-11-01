@@ -7,6 +7,6 @@ import (
 
 // GameShipRPCServer implments the gameShipRpc interface
 type GameShipRPCServer struct {
-	Logger    zap.Logger
+	Logger   *zap.Logger
 	GameStore store.GameStore
 }

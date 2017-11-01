@@ -17,13 +17,12 @@ const (
 
 func main() {
 
-	var logger = zap.New(
-		zap.NewTextEncoder(),
-		zap.InfoLevel,
-	)
+	logger, _  := zap.NewDevelopment()
+
+	defer logger.Sync()
 
 	var server = &action.GameShipRPCServer{
-		Logger:    logger,
+		Logger:    *logger,
 		GameStore: &store.LocalGameStore{},
 	}
 
