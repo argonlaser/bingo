@@ -23,6 +23,8 @@ _testmain.go
 *.test
 *.prof
 
+clients/js/node_modules
+gamesock/node_modules
 vendor/
 node_modules/
 app.config.json

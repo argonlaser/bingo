@@ -1,0 +1,80 @@
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+var board = [1,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,5,6,7,8,9,10,11,12]
+var socket = io('http://localhost:8080')
+var handleNewsEvent = function (data) {
+    console.log(data)
+    socket.emit('my other event', { my: 'data' })
+}
+var handleStartEvent = function (data) {
+    console.log(data)
+}
+/**
+ * Set message text
+ * @param {string} text
+ */
+function setMessage (text) {
+    message.innerHTML = text
+}
+/**
+ * Set test text
+ * @param {string} text
+ */
+ function setTest (text) {
+    test.innerHTML = text
+}
+/**
+ * Set received text
+ * @param {string} text
+ */
+ function setReceived(text) {
+    received.innerHTML = text
+}
+socket.on('news', handleNewsEvent)
+socket.on('start', handleStartEvent)
+socket.emit('game.join', {board: board})
+socket.on('connect', function () {
+  setMessage('on connect event')
+})
+socket.on('game.started', function (payload) {
+  setMessage('game started ' + JSON.stringify(payload))
+  var players = payload.players
+  var currPlayerIndex = payload.currPlayerIndex
+  var randomNum = Math.floor(Math.random() * 13) + 1
+  payload.emitterId = socket.id
+  payload.striked = randomNum
+  if (socket.id === players[currPlayerIndex]) {
+      // wait for the button handler and emit event to server
+      setTest('My chance')
+      socket.emit('user.strike', payload)
+  }
+})
+socket.on('striked', function (payload) {
+  setReceived(JSON.stringify(payload))
+  var players = payload.players
+  var currPlayerIndex = payload.currPlayerIndex
+  var randomNum = Math.floor(Math.random() * 13) + 1
+  payload.emitterId = socket.id
+  payload.striked = randomNum
+  if (socket.id === players[currPlayerIndex]) {
+      // wait for the button handler and emit event to server
+      setTest('My chance')
+      
+      socket.emit('user.strike', payload)
+  }
+})
+socket.on('disconnect', function () {
+  setMessage('Connection lost!')
+})
+</script>
+
+<html>
+<body>
+
+    <h1 id="message"></h1>
+    <h1 id="test"></h1>
+    <h1 id="received"></h1>
+ 
+</body>
+</html>
