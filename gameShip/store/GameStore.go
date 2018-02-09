@@ -7,4 +7,5 @@ import "github.com/argonlaser/bingo/gameShip/game"
 type GameStore interface {
 	Add(g *game.Game) error
 	GetByGameID(gameID string) (*game.Game, error)
+	Remove(g *game.Game) error
 }

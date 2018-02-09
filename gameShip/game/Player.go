@@ -10,7 +10,7 @@ type Player struct {
 }
 
 // NewPlayer gives new player instance
-func NewPlayer(ID string) *Player {
+func NewPlayer(ID string, board []BoardBox) *Player {
 	var player = &Player{
 		ID: ID,
 	}
@@ -18,8 +18,10 @@ func NewPlayer(ID string) *Player {
 	var i = 0
 	for rowVal := 1; rowVal <= 5; rowVal++ {
 		for colVal := 1; colVal <= 5; colVal++ {
-			player.Board[i].Row = int32(rowVal)
-			player.Board[i].Col = int32(colVal)
+			player.Board[i].IsStriked = board[i].IsStriked
+			player.Board[i].Row = board[i].Row
+			player.Board[i].Col = board[i].Col
+			player.Board[i].Val = board[i].Val
 			i++
 		}
 	}

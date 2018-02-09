@@ -35,3 +35,9 @@ func (s *LocalGameStore) GetByGameID(gameID string) (*game.Game, error) {
 
 	return reqGame, nil
 }
+
+// Remove removes the game from the store
+func (s *LocalGameStore) Remove(g *game.Game) error {
+	s.gameList = append(s.gameList, g)
+	return nil
+}
