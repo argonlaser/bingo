@@ -18,7 +18,7 @@ module.exports =
   },
   'test': {
     'FRONT_URL': 'https://localhost:8080',
-    'API_BASE_URL': 'http://34.211.102.93:8080',
+    'API_BASE_URL': 'http://localhost:8100',
     'SERVER': {
       'port': 8080,
       'host': 'localhost'
